@@ -1,3 +1,5 @@
+import java.util.EmptyStackException;
+
 public class Stack{
 
     private int A[];
@@ -31,8 +33,7 @@ public class Stack{
             A = temp;
             return popped;
         }else{
-            System.out.println("Error - Stack is empty");
-            return -9999;
+            throw new EmptyStackException();
         }
     }
 
@@ -40,8 +41,7 @@ public class Stack{
         if(!empty()){
             return A[A.length -1];
         }else{
-            System.out.println("Error - Stack is empty");
-            return -9999;
+            throw new EmptyStackException();
         }
     }
 }

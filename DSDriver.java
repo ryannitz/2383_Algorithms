@@ -1,3 +1,5 @@
+import java.util.EmptyStackException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.io.*;
 
@@ -14,35 +16,29 @@ public class DSDriver{
             System.out.println("Not a valid input");
         }
 
-
-
-
     }
 
     static void queue(){
         Queue q = new Queue();
         q.queue_init();
         Scanner sc = new Scanner(System.in);
-        String breakChar = "!";
-        String input = "";
         while (true) {
-            input = sc.next();
-            if (input.contains("!")) {
+            try {
+                int inVal = sc.nextInt();
+
+                if (inVal <= -1) {
+                    System.out.println("Front: " + q.front());
+                } else if (inVal == 0) {
+                    System.out.println("Dequeue: " + q.dequeue());
+                } else {
+                    q.enqueue(inVal);
+                }
+
+            }catch(InputMismatchException i) {
+                System.out.println("You done messed quited!");
                 break;
-            }
-            int inVal = Integer.parseInt(input);
-            if (inVal == -1) {
-                int out = q.front();
-                if (out != -9999) {
-                    System.out.println("Front: " + out);
-                }
-            } else if (inVal == 0) {
-                int out = q.dequeue();
-                if (out != -9999) {
-                    System.out.println("Dequeue: " + out);
-                }
-            } else {
-                q.enqueue(inVal);
+            }catch(EmptyStackException e){
+                System.out.println("Error - Queue is empty");
             }
         }
     }
@@ -51,26 +47,23 @@ public class DSDriver{
         Stack stack = new Stack();
         stack.stack_init();
         Scanner sc = new Scanner(System.in);
-        String breakChar = "!";
-        String input = "";
         while (true) {
-            input = sc.next();
-            if (input.contains("!")) {
+            try {
+                int inVal = sc.nextInt();
+
+                if (inVal <= -1) {
+                    System.out.println("Top: " + stack.top());
+                } else if (inVal == 0) {
+                    System.out.println("Pop: " + stack.pop());
+                } else {
+                    stack.push(inVal);
+                }
+
+            }catch(InputMismatchException i){
+                System.out.println("You done messed quited!");
                 break;
-            }
-            int inVal = Integer.parseInt(input);
-            if (inVal == -1) {
-                int out = stack.top();
-                if (out != -9999) {
-                    System.out.println("Top: " + out);
-                }
-            } else if (inVal == 0) {
-                int out = stack.pop();
-                if (out != -9999) {
-                    System.out.println("Pop: " + out);
-                }
-            } else {
-                stack.push(inVal);
+            }catch(EmptyStackException e){
+                System.out.println("Error - Stack is empty");
             }
         }
     }

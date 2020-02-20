@@ -1,3 +1,4 @@
+import java.util.EmptyStackException;
 import java.util.Scanner;
 
 public class CheckBrackets {
@@ -16,7 +17,9 @@ public class CheckBrackets {
             if(curBracket == '('){
                 stack.push(1);//using ints to reuse stack
             }else if(curBracket == ')'){
-                if(stack.pop() == -9999){
+                try{
+                    stack.pop();
+                }catch(EmptyStackException e) {
                     popError = true;
                     break;
                 }

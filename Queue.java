@@ -1,3 +1,5 @@
+import java.util.EmptyStackException;
+
 public class Queue{
 
     public int[] Q;
@@ -28,17 +30,17 @@ public class Queue{
             }
             Q = temp;
             return dequeued;
+        }else{
+            throw new EmptyStackException();
         }
-        System.out.println("Error - Stack is empty");
-        return -9999;
     }
 
     public int front(){
         if(!empty()){
             return Q[0];
+        }else{
+            throw new EmptyStackException();
         }
-        System.out.println("Error - Stack is empty");
-        return -9999;
     }
 
 }
